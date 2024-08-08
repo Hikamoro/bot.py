@@ -4,15 +4,15 @@ from github import Github
 import os
 
 # Токены
-TELEGRAM_[REDACTED] = 'your_telegram_bot_token'
-GITHUB_[REDACTED] = 'your_github_token'
+TELEGRAM_TOKEN = 'your_telegram_bot_token'
+GITHUB_TOKEN = 'your_github_token'
 
 # Инициализация клиентов
-g = Github(GITHUB_[REDACTED])
+g = Github(GITHUB_TOKEN)
 
 def clean_content(content: str) -> str:
     # Удаляем потенциально опасные шаблоны (это только пример, для реального использования вам нужно будет адаптировать его)
-    sensitive_patterns = ["[REDACTED]", "[REDACTED]", "[REDACTED]"]
+    sensitive_patterns = ["API_KEY", "TOKEN", "SECRET"]
     for pattern in sensitive_patterns:
         content = content.replace(pattern, "[REDACTED]")
     return content
@@ -67,7 +67,7 @@ async def handle_file(update: Update, context: CallbackContext):
 
 def main():
     # Создание приложения
-    application = Application.builder().token(TELEGRAM_[REDACTED]).build()
+    application = Application.builder().token(TELEGRAM_TOKEN).build()
 
     # Обработчики
     application.add_handler(CommandHandler("start", start))
